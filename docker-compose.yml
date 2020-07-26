@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  api:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/api:cached
+    depends_on:
+      - redis
+    environment:
+      REDIS_ENDPOINT: plank_dev
+  redis: 
+    image: redis:6
+    ports:
+      - "6379:6379"
+
